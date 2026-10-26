@@ -1,0 +1,58 @@
+# 光域造景 · CUDA 完整版
+# 构建：docker compose -f docker-compose.cuda.yml build
+# 运行：docker compose -f docker-compose.cuda.yml up -d
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    LD_DEMO_MODE=0 \
+    GRADIO_SERVER_NAME=0.0.0.0 \
+    GRADIO_SERVER_PORT=8090 \
+    PORT=8090 \
+    GRADIO_ANALYTICS_ENABLED=False \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_DEFAULT_TIMEOUT=180 \
+    TORCH_CUDA_ARCH_LIST="7.5;8.0;8.6;8.9"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.10 python3.10-dev python3-pip python3.10-venv \
+    git wget curl ca-certificates \
+    build-essential ninja-build cmake \
+    libgl1 libglib2.0-0 libglm-dev \
+    && ln -sf /usr/bin/python3.10 /usr/bin/python \
+    && ln -sf /usr/bin/pip3 /usr/bin/pip \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# PyTorch CUDA 11.8
+RUN pip install --no-cache-dir \
+    torch==2.1.2 torchvision==0.16.2 \
+    --index-url https://download.pytorch.org/whl/cu118
+
+COPY requirements-cuda.txt /app/requirements-cuda.txt
+RUN pip install --no-cache-dir -r /app/requirements-cuda.txt \
+    -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 算法与界面代码
+COPY web_app.py app.py app_mini.py arguments.py luciddreamer.py run.py /app/
+COPY webui /app/webui
+COPY scene /app/scene
+COPY gaussian_renderer /app/gaussian_renderer
+COPY utils /app/utils
+COPY cameras /app/cameras
+COPY ZoeDepth /app/ZoeDepth
+COPY examples /app/examples
+COPY assets /app/assets
+COPY submodules /app/submodules
+
+# 编译 CUDA 扩展
+RUN cd /app/submodules/simple-knn && pip install --no-cache-dir . \
+    && cd /app/submodules/depth-diff-gaussian-rasterization-min \
+    && pip install --no-cache-dir .
+
+RUN mkdir -p /app/outputs /app/results /app/data /app/stablediffusion
+
+EXPOSE 8090
+CMD ["python", "web_app.py"]

@@ -1,0 +1,11 @@
+pydantic==2.10.6
+gradio==3.50.2
+huggingface_hub==0.19.4
+Pillow==10.4.0
+psutil==6.0.0
+numpy==1.26.4
+fastapi==0.104.1
+starlette==0.27.0
+uvicorn==0.24.0
+websockets==11.0.3
+markupsafe==2.1.3

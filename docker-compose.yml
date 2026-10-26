@@ -1,0 +1,24 @@
+# 演示版（CPU 也可）。完整 CUDA 版见 docker-compose.cuda.yml
+services:
+  hzq-dreamer:
+    build: .
+    image: hzq-lucid-dreamer:latest
+    container_name: hzq-lucid-dreamer
+    ports:
+      - "8090:8090"
+    environment:
+      - LD_DEMO_MODE=1
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=8090
+      - PORT=8090
+      - GRADIO_ANALYTICS_ENABLED=False
+      - NO_PROXY=localhost,127.0.0.1,::1,0.0.0.0
+      - no_proxy=localhost,127.0.0.1,::1,0.0.0.0
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./results:/app/results
+      - ./examples:/app/examples
+    restart: unless-stopped
+    # 避免被其它项目抢端口后容器卡在 Created
+    stop_grace_period: 10s

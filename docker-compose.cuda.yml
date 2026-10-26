@@ -1,0 +1,34 @@
+# 光域造景 · CUDA 完整版（需宿主机 NVIDIA Container Toolkit）
+# 用法：
+#   docker compose -f docker-compose.cuda.yml up -d --build
+services:
+  hzq-dreamer-cuda:
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda
+    image: hzq-lucid-dreamer:cuda
+    container_name: hzq-lucid-dreamer-cuda
+    ports:
+      - "8090:8090"
+    environment:
+      - LD_DEMO_MODE=0
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=8090
+      - PORT=8090
+      - GRADIO_ANALYTICS_ENABLED=False
+      - HF_HOME=/app/.cache/huggingface
+      - TORCH_HOME=/app/.cache/torch
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./results:/app/results
+      - ./examples:/app/examples
+      - ./stablediffusion:/app/stablediffusion
+      - hf-cache:/app/.cache
+    # Compose V2 + NVIDIA Container Toolkit
+    gpus: all
+    restart: unless-stopped
+    stop_grace_period: 20s
+
+volumes:
+  hf-cache:

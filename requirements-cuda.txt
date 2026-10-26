@@ -1,0 +1,28 @@
+# CUDA 完整算法依赖（需 NVIDIA GPU；建议显存 ≥12GB，最好 ≥16GB）
+# PyTorch CUDA 请按本机驱动单独安装，例如（Python 3.10~3.12）：
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
+
+timm==0.6.7
+plyfile==0.8.1
+diffusers==0.23.1
+peft==0.6.2
+scipy
+numpy==1.26.4
+imageio[ffmpeg]
+opencv-python
+Pillow==10.4.0
+open3d
+omegaconf
+huggingface_hub==0.25.2
+gradio==3.50.2
+pydantic==2.10.6
+psutil==6.0.0
+fastapi==0.104.1
+starlette==0.27.0
+uvicorn==0.24.0
+websockets==11.0.3
+markupsafe==2.1.3
+safetensors
+transformers
+accelerate
+tqdm
