@@ -1,4 +1,4 @@
-# DeepOpen
+# DeepOpen-3d-webs
 
 中文  [中文说明](https://github.com/deepopen-com/deepopen-3d-webs/blob/main/README-cn.md)
 
