@@ -5,9 +5,9 @@
 
 # Project Overview
 
-Guangyu Zaojing (光域造景) is an image-driven 3D scene generation system. You supply one reference image and a prompt, and the system generates scene results along a camera trajectory that you can preview, replay, and trace. The official 3D demo assets play color/depth animations and Gaussian point clouds directly in the browser. The web app ships as a Docker image and listens on port `8090` by default.
+DeepOpen-3d-webs is an image-driven 3D scene generation system. You supply one reference image and a prompt, and the system generates scene results along a camera trajectory that you can preview, replay, and trace. The official 3D demo assets play color/depth animations and Gaussian point clouds directly in the browser. The web app ships as a Docker image and listens on port `8090` by default.
 
-![Guangyu Zaojing workbench](docs/user/images/ScreenShot_2026-10-19_201426_816.png)
+ 
 
 ## 1. Background and Goals
 
