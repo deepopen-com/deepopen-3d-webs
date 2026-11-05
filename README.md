@@ -138,7 +138,7 @@ All screenshots are from `docs/user/images/`.
  
 **Scene Generation**
 
-![Scene Generation](docs/user/images/ScreenShot_2026-10-19_201445_625.png)
+ 
 
 ![Generation result](docs/user/images/ScreenShot_2026-10-19_201522_385.png)
 
