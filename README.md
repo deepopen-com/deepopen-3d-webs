@@ -135,11 +135,7 @@ flowchart LR
 ## 5. UI Preview
 
 All screenshots are from `docs/user/images/`.
-
-**Workbench**
-
-![Workbench](docs/user/images/ScreenShot_2026-10-19_201426_816.png)
-
+ 
 **Scene Generation**
 
 ![Scene Generation](docs/user/images/ScreenShot_2026-10-19_201445_625.png)
@@ -159,12 +155,7 @@ All screenshots are from `docs/user/images/`.
 ![View & Demo](docs/user/images/ScreenShot_2026-10-20_200239_138.png)
 
 ![Point cloud and full Gaussian download](docs/user/images/ScreenShot_2026-10-20_200246_086.png)
-
-**System Status**
-
-![System Status](docs/user/images/ScreenShot_2026-10-19_201623_239.png)
-
-Field descriptions and the order of operations for each tab are in the [User Manual](docs/用户手册.md).
+ 
 
 ## 6. Getting Started
 
